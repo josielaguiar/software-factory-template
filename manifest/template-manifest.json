@@ -1,0 +1,21 @@
+{
+  "version": "0.1.0",
+  "installRootFiles": [
+    ".gitignore",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "FLOW.md",
+    "README.md"
+  ],
+  "installDirectories": [
+    "docs",
+    "skills"
+  ],
+  "syncDirectories": [
+    "skills"
+  ],
+  "syncOptionalRootFiles": [
+    "AGENTS.md",
+    "CLAUDE.md"
+  ]
+}

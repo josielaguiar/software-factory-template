@@ -1,0 +1,3 @@
+interface:
+  display_name: "Phase Detailing"
+  short_description: "Detalha fases, subfases, redeploy e auditoria"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Template Installer"
+  short_description: "Instala ou sincroniza este template"
+  default_prompt: "Use $template-installer para instalar ou sincronizar o software-factory-template em um projeto novo ou existente."
