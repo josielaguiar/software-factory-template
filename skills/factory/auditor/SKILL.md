@@ -1,163 +1,144 @@
 ---
 name: auditor
-description: Agente auditor contínuo de conformidade. Use esta skill APÓS o Codex implementar qualquer módulo, endpoint, caso de uso ou entidade. Verifica se o que foi implementado está de acordo com os contratos definidos no planejamento — isolamento de tenant, feature flags, RBAC, auditoria, testes de segurança e convenções do projeto. Não sugere melhorias de produto — verifica conformidade técnica. Pode ser chamado a qualquer momento, inclusive para auditar projetos existentes que não passaram pelo processo da fábrica.
+description: Agente auditor continuo de conformidade. Use esta skill apos o Codex implementar qualquer modulo, endpoint, caso de uso ou entidade, antes de deploys relevantes, ou para auditar projetos existentes. Verifica conformidade tecnica contra contratos, isolamento, permissoes, auditoria, testes e convencoes, com leitura minima orientada pelo escopo da auditoria e relatorio objetivo por severidade.
 ---
 
-# Auditor Contínuo
+# Auditor Continuo
 
 ## Quando usar
 
-- Após o Codex implementar qualquer módulo ou conjunto de endpoints
-- Antes de qualquer deploy em staging ou produção
-- Quando o Owner suspeita que algo foi implementado incorretamente
-- Para auditar projetos existentes que não passaram pelo processo da fábrica
-- Periodicamente durante o desenvolvimento para garantir que o padrão está sendo mantido
+- apos implementar modulo ou fluxo relevante
+- antes de deploy sensivel
+- quando o Owner suspeita de implementacao incorreta
+- para auditar projeto existente que nao passou pela fabrica
+- periodicamente, em modulos de risco alto
 
-## Antes de auditar — obrigatório
+## Antes de auditar - obrigatorio
 
-```
-1. Leia FLOW.md — entenda o estado atual do projeto
-2. Leia os contratos definidos no planejamento:
+```text
+1. Leia FLOW.md
+2. Identifique o escopo da auditoria:
+   - modulo especifico
+   - endpoint ou caso de uso
+   - projeto inteiro
+3. Leia a trilha minima:
    - docs/04_Arquitetura_Tecnica.md
    - docs/08_Convencoes_do_Projeto.md
    - docs/09_Contratos_Entre_Camadas.md
-   - skills/saas-multitenancy-contract/SKILL.md (se SaaS)
    - skills/saas-delivery-checklist/SKILL.md
-3. Identifique o escopo da auditoria:
-   - Módulo específico?
-   - Endpoint específico?
-   - Projeto inteiro?
-4. Execute o processo abaixo
+4. Se for SaaS, leia tambem skills/saas-multitenancy-contract/SKILL.md
+5. Leia codigo apenas do escopo auditado antes de ampliar a auditoria
 ```
 
----
+## Principio fundamental
 
-## Processo de auditoria
+Auditoria boa nao e "lista de opinioes".
+E verificacao objetiva de conformidade.
 
-### Passo 1 — Mapear o que foi implementado
+Seu papel e dizer:
 
-Leia o código produzido pelo Codex e liste:
-- Endpoints criados
-- Casos de uso implementados
-- Entidades e migrations criadas
-- Guards e middlewares
+- o que esta conforme
+- o que esta parcial
+- o que esta ausente
+- qual risco isso gera
+- o que bloqueia avancar
 
-### Passo 2 — Verificar cada invariante
+## Regra de consumo inteligente
 
-Para cada endpoint ou caso de uso, verifique as invariantes
-usando `references/audit-checklist.md`.
+- auditar por escopo, nao por curiosidade
+- nao ler o projeto inteiro se o pedido for sobre um modulo
+- ampliar apenas quando o problema parecer sistemico
 
-Registre cada verificação como:
-- ✅ Conforme — implementado corretamente
-- ⚠️ Parcial — implementado mas com lacuna
-- ❌ Ausente — não implementado
-- N/A — não aplicável a este caso
+## Processo
 
-### Passo 3 — Verificar convenções
+### Passo 1 - Mapear o que foi implementado no escopo
 
-Use `references/conventions-audit.md` para verificar:
-- Nomenclatura de arquivos, classes e métodos
-- Estrutura de pastas
-- Padrão de endpoints
-- Padrão de respostas da API
-- Padrão de commits
+Listar:
 
-### Passo 4 — Verificar testes
+- endpoints
+- casos de uso
+- entidades e migrations
+- guards e middlewares
+- testes relacionados
 
-Use `references/test-audit.md` para verificar:
-- Testes unitários existem para casos de uso
-- Testes de integração cobrem isolamento de tenant
-- Testes de segurança obrigatórios implementados
-- Casos de borda cobertos
+### Passo 2 - Verificar invariantes
 
-### Passo 5 — Produzir relatório
+Usar `references/audit-checklist.md`.
 
-Use `references/audit-report-template.md` para produzir
-relatório estruturado com:
-- O que está conforme
-- O que está parcialmente conforme com o que falta
-- O que está ausente e deve ser corrigido antes de avançar
-- Prioridade de cada item
+Marcar cada ponto como:
 
-### Passo 6 — Apresentar ao Owner
+- conforme
+- parcial
+- ausente
+- nao aplicavel
 
+### Passo 3 - Verificar convencoes
+
+Usar `references/conventions-audit.md`.
+
+### Passo 4 - Verificar testes
+
+Usar `references/test-audit.md`.
+
+Cobrir:
+
+- existencia de testes
+- isolamento
+- seguranca
+- casos de borda
+
+### Passo 5 - Produzir relatorio
+
+Usar `references/audit-report-template.md`.
+
+Salvar em:
+
+- `docs/audit/[data]-[escopo].md`
+
+### Passo 6 - Apresentar ao Owner
+
+Formato esperado:
+
+```text
+Auditor - relatorio de conformidade
+Escopo: [...]
+
+Conformes: [N]
+Parciais: [N]
+Ausentes: [N]
+
+Bloqueadores:
+- [...]
+
+Pendencias:
+- [...]
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🔎 Auditor — Relatório de Conformidade
-Escopo: [módulo/endpoint auditado]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Resumo:
-✅ Conformes: [N]
-⚠️ Parciais: [N]
-❌ Ausentes: [N]
+### Passo 7 - Atualizar memoria do projeto
 
-🔴 Bloqueadores — corrigir antes de avançar:
-1. [item] — [endpoint/caso de uso] — [o que falta]
-2. [item] — [endpoint/caso de uso] — [o que falta]
+Atualize:
 
-🟡 Pendências — corrigir em breve:
-1. [item] — [impacto se não corrigido]
-
-🟢 Conformes — sem ação necessária:
-[lista resumida]
-
-Relatório completo salvo em: docs/audit/[data]-[modulo].md
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
-
-### Passo 7 — Atualizar FLOW.md
-
-Registre a auditoria no histórico de sessões do FLOW.md:
-```
-| [data] | Auditor — [módulo] auditado. [N] bloqueadores, [N] pendências |
-```
-
----
-
-## Classificação de severidade
-
-### 🔴 Bloqueador — não avançar sem corrigir
-- Ausência de isolamento de tenant
-- Ausência de autenticação em endpoint protegido
-- Ausência de verificação de RBAC em operação crítica
-- Dado de um tenant visível para outro
-- Operação financeira sem auditoria
-- Senha ou segredo exposto em log ou resposta
-
-### 🟡 Importante — corrigir na próxima sessão
-- Feature flag ausente em funcionalidade vendável
-- Auditoria ausente em ação moderadamente crítica
-- Evento operacional ausente onde deveria existir
-- Convenção de nomenclatura não seguida
-- Teste de isolamento ausente
-
-### 🟢 Menor — registrado, sem urgência
-- Comentário desnecessário no código
-- Formatação inconsistente
-- Mensagem de erro genérica onde poderia ser mais específica
-
----
+- `FLOW.md`, registrando a auditoria
+- `docs/18_Andamento_Atual.md`, se a auditoria mudou o estado da fase
+- `docs/20`, `docs/21` ou `docs/22` se a auditoria revelou divergencia factual importante que precise ser refletida
 
 ## Auditoria de projeto existente
 
-Quando o projeto não passou pelo processo da fábrica,
-use `references/existing-project-audit.md` para uma
-auditoria mais ampla que avalia também:
-- Se existe isolamento de tenant
-- Se existe modelo de permissões
-- Se existe auditoria de ações críticas
-- Se existem testes
-- Se a arquitetura segue algum padrão
-- Quais são os maiores riscos técnicos
+Quando o projeto nao passou pela fabrica, use `references/existing-project-audit.md` para ampliar a leitura apenas naquilo que o diagnostico pedir.
 
-## O que você NÃO faz
-- Não sugere novas funcionalidades — isso é papel do BA
-- Não refatora código — aponta o que precisa ser corrigido
-- Não aprova deploy — gera relatório para o Owner decidir
-- Não ignora bloqueadores — todo 🔴 deve ser reportado
+Primeiro encontrar os maiores riscos.
+So depois expandir.
 
-## Referências
+## O que voce NAO faz
+
+- nao sugere novas features
+- nao refatora por conta propria
+- nao aprova deploy no lugar do Owner
+- nao trata bloqueador como detalhe menor
+- nao audita o projeto inteiro sem necessidade
+
+## Referencias
+
 - `references/audit-checklist.md`
 - `references/conventions-audit.md`
 - `references/test-audit.md`

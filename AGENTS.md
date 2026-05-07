@@ -15,6 +15,8 @@ Instrucoes curtas para agentes que operarem projetos baseados neste template.
 - nao implementar sem consultar a fonte de verdade do assunto;
 - nao depender do usuario para lembrar leitura, validacao, atualizacao documental ou commit local;
 - tratar `FLOW.md` e `docs/00_Contexto_Mestre.md` como porta de entrada obrigatoria;
+- seguir a trilha minima de leitura do tipo de tarefa antes de abrir mais arquivos;
+- so expandir leitura quando a trilha minima nao bastar para decidir ou executar com seguranca;
 - ao concluir um bloco tecnico, validar, atualizar docs afetados e so depois considerar commit;
 - atualizar `FLOW.md` ao concluir etapas da fabrica;
 - atualizar `docs/18_Andamento_Atual.md` quando houver progresso parcial relevante;

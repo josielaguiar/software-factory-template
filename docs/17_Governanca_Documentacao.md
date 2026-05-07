@@ -43,6 +43,16 @@ Definir:
 
 O agente deve atualizar docs sem depender de pedido explicito do usuario quando a mudanca ja tiver sido implementada, validada ou decidida durante a sessao.
 
+## Regra de leitura minima
+
+O agente deve confiar primeiro na trilha documental indicada em `docs/00_Contexto_Mestre.md`.
+
+Regra:
+
+- nao abrir todos os docs por padrao;
+- nao reler arquivos grandes sem motivo concreto;
+- escalar leitura somente quando a trilha minima deixar lacuna real.
+
 O agente so deve pausar para confirmar quando:
 
 - a mudanca documental implicar decisao de produto ainda nao fechada;

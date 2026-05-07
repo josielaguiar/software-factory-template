@@ -28,6 +28,21 @@ O comportamento padrao e:
 6. registrar no `FLOW.md` o que concluiu, o que ficou pendente e qual e o proximo passo;
 7. so entao preparar commit, deploy ou handoff.
 
+## Economia de contexto
+
+Este template foi desenhado para reduzir consumo desnecessario de contexto e creditos.
+
+Regra geral:
+
+1. ler primeiro `FLOW.md` e `docs/00_Contexto_Mestre.md`;
+2. escolher a trilha minima conforme o pedido do Owner;
+3. abrir apenas os docs dessa trilha;
+4. expandir leitura apenas se surgir lacuna real, contradicao ou dependencia tecnica nova.
+
+Nunca ler todos os docs por padrao.
+Nunca reler grandes blocos sem necessidade na mesma sessao.
+Preferir contexto minimo suficiente, nao contexto maximo por seguranca.
+
 ## Autonomia esperada
 
 O agente pode seguir sem perguntar quando a acao for local, reversivel e esperada pelo fluxo:

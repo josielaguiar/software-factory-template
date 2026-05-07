@@ -90,6 +90,9 @@ Regra geral:
 3. `docs/15_Pendencias_e_Bloqueantes.md`
 4. `docs/18_Andamento_Atual.md`
 
+Se isso bastar para responder ou prosseguir, pare aqui.
+So abra mais docs se houver lacuna real.
+
 ### Se o pedido for implementar
 
 1. `docs/00_Contexto_Mestre.md`
@@ -99,6 +102,8 @@ Regra geral:
 5. `docs/09_Contratos_Entre_Camadas.md`
 6. `docs/10_Permissoes_e_Acessos.md`
 
+So depois disso abrir docs modulares extras, e apenas se a tarefa realmente pedir.
+
 ### Se o pedido for entender o produto real
 
 1. `docs/00_Contexto_Mestre.md`
@@ -106,12 +111,31 @@ Regra geral:
 3. `docs/21_Matriz_de_Acoes_e_Efeitos.md`
 4. `docs/22_Runbook_Operacional_do_Produto.md`
 
+Evite abrir planejamento macro ou arquitetura inteira se o pedido for apenas factual.
+
+### Se o pedido for instalar ou sincronizar o template
+
+1. `docs/00_Contexto_Mestre.md`
+2. `docs/23_Instalacao_e_Sincronizacao_do_Template.md`
+3. `README.md`
+
+### Se o pedido for retomar projeto existente sem clareza do estado
+
+1. `FLOW.md`
+2. `docs/00_Contexto_Mestre.md`
+3. `docs/18_Andamento_Atual.md`
+4. `docs/20_Estado_Atual_do_Produto.md`
+
+So depois expandir para docs tecnicos ou codigo.
+
 ## Regra pratica para agentes
 
 - nao criar documento novo sem verificar se ele cabe na estrutura existente;
 - atualizar primeiro a fonte de verdade e depois espelhos;
 - quando o estado real do produto mudar, atualizar tambem `20`, `21` e `22`.
 - nao depender do usuario para lembrar leitura minima, testes, atualizacao documental ou commit local;
+- tratar a trilha de docs por tipo de tarefa como suficiente por padrao;
+- so ampliar a leitura quando a trilha minima nao resolver a demanda com seguranca;
 - usar `FLOW.md` para estado e `docs/22_Runbook_Operacional_do_Produto.md` para operacao;
 - usar `docs/23_Instalacao_e_Sincronizacao_do_Template.md` quando a tarefa for instalar ou atualizar o template em outro projeto;
 - ao concluir um bloco relevante, atualizar tambem `docs/18_Andamento_Atual.md`;

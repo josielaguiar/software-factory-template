@@ -1,12 +1,12 @@
-# FLOW.md — Estado do Processo
+# FLOW.md - Estado do Processo
 
-Este arquivo é a memória compartilhada entre os agentes da fábrica.
-Todo agente lê este arquivo antes de atuar e atualiza ao concluir.
-O Owner não precisa editar este arquivo — os agentes cuidam disso.
+Este arquivo e a memoria compartilhada entre os agentes da fabrica.
+Todo agente le este arquivo antes de atuar e atualiza ao concluir.
 
 ---
 
 ## Projeto
+
 Nome: {{PRODUTO_NOME}}
 Categoria: {{PRODUTO_CATEGORIA}}
 Iniciado em: {{DATA_INICIO}}
@@ -15,37 +15,35 @@ Iniciado em: {{DATA_INICIO}}
 
 ## Status atual
 
-Etapa concluída: —
-Próxima etapa: Orquestrador → Market Researcher
-Aguardando: início do processo
+Etapa concluida: -
+Proxima etapa: Orquestrador -> [primeiro agente]
+Aguardando: inicio do processo
+Ultimo pacote concluido: -
+Proxima acao operacional: -
+Push/deploy pendente: nao
 
 ---
 
 ## Pipeline
 
-| # | Etapa | Status | Data | Observação |
+| # | Etapa | Status | Data | Observacao |
 |---|---|---|---|---|
-| 0 | Orquestrador | ⏳ Pendente | — | — |
-| 1 | Market Researcher | ⏳ Pendente | — | — |
-| 2 | Business Analyst | ⏳ Pendente | — | — |
-| 3 | UX Strategist | ⏳ Pendente | — | — |
-| 4 | Software Architect | ⏳ Pendente | — | — |
-| 5 | Tech Lead | ⏳ Pendente | — | — |
-| 6 | QA Strategist | ⏳ Pendente | — | — |
-| 7 | DevOps Advisor | ⏳ Pendente | — | — |
-
-Legenda: ⏳ Pendente | 🔄 Em andamento | ✅ Concluído | ⏸ Aguardando Owner
+| 0 | Orquestrador | Pendente | - | - |
+| 1 | Market Researcher | Pendente | - | - |
+| 2 | Business Analyst | Pendente | - | - |
+| 3 | UX Strategist | Pendente | - | - |
+| 4 | Software Architect | Pendente | - | - |
+| 5 | Tech Lead | Pendente | - | - |
+| 6 | QA Strategist | Pendente | - | - |
+| 7 | DevOps Advisor | Pendente | - | - |
 
 ---
 
-## Decisões do Owner
+## Decisoes do Owner
 
-Registre aqui cada decisão tomada pelo Owner durante o processo.
-Agentes subsequentes devem ler esta seção antes de atuar.
-
-| Data | Etapa | Decisão |
+| Data | Etapa | Decisao |
 |---|---|---|
-| — | — | — |
+| - | - | - |
 
 ---
 
@@ -63,19 +61,35 @@ Agentes subsequentes devem ler esta seção antes de atuar.
 
 ---
 
-## Histórico de sessões
+## Historico de sessoes
 
 | Data | O que foi feito |
 |---|---|
-| — | Projeto iniciado |
+| - | Projeto iniciado |
 
 ---
 
-## Instrução para agentes
+## Checklist de encerramento da sessao
 
-Ao iniciar qualquer sessão nova:
-1. Leia este arquivo completamente
-2. Identifique a etapa atual e o que está pendente
-3. Informe o Owner resumidamente onde o projeto está
-4. Pergunte se pode continuar ou se há algo a ajustar
-5. Ao concluir sua etapa, atualize este arquivo antes de encerrar
+Antes de encerrar uma sessao ou bloco, registrar:
+
+- o que foi concluido de fato;
+- o que ficou pendente;
+- quais docs foram atualizados;
+- se houve mudanca no estado real do produto;
+- se existe commit local pronto;
+- se existe push ou deploy pendente de confirmacao do usuario;
+- se existe acao manual necessaria fora do repositorio.
+
+---
+
+## Instrucao para agentes
+
+Ao iniciar qualquer sessao nova:
+
+1. leia este arquivo completamente;
+2. identifique a etapa atual e o que esta pendente;
+3. informe resumidamente onde o projeto esta;
+4. leia `docs/00_Contexto_Mestre.md` antes de abrir outros docs;
+5. escolha a trilha correta de leitura, implementacao, auditoria ou operacao;
+6. atualize este arquivo ao concluir sua etapa ou bloco.

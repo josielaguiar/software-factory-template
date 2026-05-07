@@ -12,7 +12,7 @@ Antes de qualquer coisa, verifique:
 ```text
 existe FLOW.md nesta pasta?
   sim -> leia e informe o Owner onde esta o projeto
-  nao -> pergunte se quer iniciar projeto novo
+  nao -> descubra primeiro em que tipo de entrada o usuario esta
 ```
 
 Nunca pergunte ao Owner em qual etapa esta: o `FLOW.md` sabe.
@@ -22,6 +22,16 @@ Depois de ler o `FLOW.md`, leia tambem `docs/00_Contexto_Mestre.md` para:
 - entender o papel de cada doc
 - saber se o pedido pede fabrica, detalhamento de fase, docs tecnicos ou runbook operacional
 - evitar abrir arquivos demais sem necessidade
+
+## Regra de consumo inteligente
+
+O orquestrador deve operar com leitura progressiva:
+
+- primeiro a trilha minima;
+- depois leitura complementar, apenas se a trilha nao bastar.
+
+Nunca abrir todo o projeto por reflexo.
+Nunca transformar seguranca em excesso de contexto.
 
 ## FLOW.md e docs/00 como dupla de governanca
 
@@ -43,6 +53,112 @@ Campos que todo agente deve atualizar no `FLOW.md` ao concluir:
 - pendencias operacionais
 - necessidade de push ou deploy
 
+## Regra de entrada
+
+A primeira decisao do orquestrador nao e "qual categoria de produto".
+
+A primeira decisao e "qual o estado de entrada deste trabalho".
+
+Antes de planejar, use `references/entry-modes.md` para classificar o caso em um destes modos:
+
+- `zero` -> projeto novo mesmo, sem conversa anterior aproveitavel
+- `external-context` -> ideia ja discutida com outro agente ou documento externo
+- `existing-project` -> ja existe codigo, repositorio, docs ou app em andamento
+- `template-resume` -> projeto ja usa este template e precisa apenas retomar o fluxo
+
+## Como conduzir cada modo
+
+### 1. `zero`
+
+Objetivo:
+
+- tirar do usuario informacoes suficientes para um planejamento bom;
+- sem entrevista rala;
+- sem burocracia cansativa.
+
+Regra:
+
+- nunca sair planejando com contexto fraco;
+- nunca despejar um questionario enorme de uma vez;
+- trabalhar em rodadas curtas, de no maximo 3 ou 4 perguntas.
+
+Use `references/intake-plan.md`.
+
+Primeiro descubra:
+
+- para quem e
+- qual problema resolve
+- como sera usado
+- o que o usuario imagina como resultado minimo util
+
+Depois meca o nivel de definicao:
+
+- se ja esta forte o bastante, classifique a categoria e siga
+- se ainda estiver raso, faca mais uma rodada curta e objetiva
+
+### 2. `external-context`
+
+Objetivo:
+
+- aproveitar contexto que o usuario ja construiu fora daqui;
+- reduzir retrabalho;
+- perguntar so o que realmente falta.
+
+Primeiro:
+
+- pedir o material existente;
+- ou usar `references/external-context-prompt.md` para fornecer um prompt que o usuario possa colar em ChatGPT, Claude ou outro agente e trazer o resumo de volta.
+
+Depois:
+
+- ler o material recebido;
+- preencher mentalmente o plano basico de perguntas;
+- perguntar apenas as lacunas que continuam abertas.
+
+### 3. `existing-project`
+
+Objetivo:
+
+- entender primeiro o que ja existe;
+- nao entrevistar como se o projeto estivesse nascendo agora.
+
+Primeiro:
+
+- ler repositorio, README, docs e evidencias locais;
+- se o template ja estiver parcialmente aplicado, ler tambem `docs/18`, `docs/20`, `docs/21` e `docs/22`;
+- montar um retrato inicial do estado atual.
+
+Regra de economia:
+
+- nao ler arquitetura, backlog, contratos e codigo inteiro logo de saida;
+- partir de `FLOW.md`, `docs/00`, `docs/18` e `docs/20-22` quando existirem;
+- expandir apenas para os modulos que realmente estiverem em duvida.
+
+Depois:
+
+- apresentar ao Owner o que parece ja estar claro;
+- perguntar apenas sobre lacunas, contradicoes ou decisoes faltantes.
+
+Se o projeto estiver desorganizado, o caminho natural pode ser:
+
+- auditor
+- preenchimento da camada factual
+- e so depois redetalhamento de fase ou retomada da factory
+
+### 4. `template-resume`
+
+Objetivo:
+
+- retomar com minimo atrito.
+
+Fluxo:
+
+1. Leia `FLOW.md`
+2. Leia `docs/00_Contexto_Mestre.md`
+3. Leia `docs/18_Andamento_Atual.md`
+4. Apresente resumo curto do estado
+5. Com aprovacao do Owner, continue da proxima etapa ou redirecione para a skill certa
+
 ## Quando usar esta skill
 
 Use esta skill quando:
@@ -51,10 +167,13 @@ Use esta skill quando:
 - uma fase nova precisar nascer bem estruturada
 - uma fase existente precisar ser expandida ou redetalhada
 - houver duvida se a fase ja esta suficientemente fechada para virar backlog de implementacao
+- houver necessidade de entender se o ponto de partida e zero, legado, contexto externo ou retomada
 
 Nao use esta skill como padrao para implementacao tecnica isolada. Nesses casos, a rota normal e `FLOW.md` -> `docs/00_Contexto_Mestre.md` -> `docs/18_Plano_de_Implementacao.md` -> docs tecnicos.
 
 ## Pipeline por categoria de produto
+
+Classifique a categoria so depois que o contexto de entrada estiver suficientemente entendido.
 
 ### saas-b2b / saas-b2c
 
