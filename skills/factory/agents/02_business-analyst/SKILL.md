@@ -129,6 +129,41 @@ Gaps identificados - preciso da sua decisao
    Sugestao: [sugestao]
 ```
 
+#### Gap obrigatorio: ciclo de vida das entidades
+
+Para cada entidade principal identificada no produto, pergunte ao Owner:
+
+```text
+Para a entidade [Nome], quais operacoes o usuario precisa executar?
+
+- Criar: sim (quem: [ator])
+- Listar/Ver: sim
+- Editar: sim / nao (justificativa se nao)
+- Excluir ou Arquivar: sim / nao (justificativa se nao)
+```
+
+Regra: se Edit ou Delete nao estiverem no escopo, isso deve ser uma decisao explicita registrada
+com justificativa — nao uma omissao silenciosa.
+
+Exemplos de justificativa valida: "dados historicos nao podem ser alterados", "exclusao logica
+via status", "fora do MVP — entra na fase 2".
+
+Registre no FRD a tabela de ciclo de vida de cada entidade relevante.
+
+#### Gap obrigatorio: gestao de usuarios (apenas para SaaS multi-tenant)
+
+Se o produto tiver multiplos tipos de usuario ou papeis diferentes, pergunte:
+
+```text
+Quem cria, edita e desativa usuarios dentro do sistema?
+Por qual tela? Quais operacoes essa gestao precisa ter?
+Existe um painel de administracao de membros/acessos?
+```
+
+Se o Owner nao mencionar telas de gestao de usuarios, apresente como gap critico:
+o mercado SaaS sempre exige que alguem gerencie quem tem acesso — se nao for pelo proprio
+sistema, como sera feito?
+
 ### Passo 5 - Produzir BRD e FRD
 
 Use os templates em `references/` para produzir:

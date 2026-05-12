@@ -31,6 +31,17 @@
 - Campos opcionais: [lista]
 - Quem pode executar: [atores]
 
+**Ciclo de vida — [Nome da entidade principal desta funcionalidade]**
+
+| Operação | No escopo? | Fase | Justificativa se fora |
+|---|---|---|---|
+| Criar | Sim | MVP | — |
+| Listar / Ver | Sim | MVP | — |
+| Editar | [Sim/Não] | [MVP/Fase N] | [ex: imutável após confirmado] |
+| Excluir / Arquivar | [Sim/Não] | [MVP/Fase N] | [ex: dados históricos, só arquivamento] |
+
+> Regra: toda operação ausente deve ter justificativa explícita. Omissão silenciosa não é decisão.
+
 **[Próxima funcionalidade]**
 [idem]
 

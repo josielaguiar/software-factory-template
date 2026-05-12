@@ -132,3 +132,32 @@ Marque ✅ ⚠️ ❌ ou N/A para cada item.
 | 8.1 | empresa_id nunca aceito do body em operações de escrita | | |
 | 8.2 | empresa_id sempre extraído do contexto autenticado | | |
 | 8.3 | Parâmetro de tenant em query string verificado contra o tenant autenticado | | |
+
+---
+
+## I9 — Completude de CRUD e telas de gestão
+
+Execute uma vez por módulo ou entidade relevante implementada.
+
+| # | Verificação | Status | Observação |
+|---|---|---|---|
+| 9.1 | Entidade tem Create implementado → Edit também existe ou há decisão explícita de excluir? | | |
+| 9.2 | Entidade tem Create implementado → Delete/Archive também existe ou há decisão explícita de excluir? | | |
+| 9.3 | Toda ausência de Edit ou Delete está documentada com justificativa (não é omissão silenciosa)? | | |
+| 9.4 | Produto SaaS multi-tenant → existe tela de gestão de membros (listar, criar, editar papel, desativar)? | | |
+| 9.5 | Produto SaaS com admin de plataforma → existe tela para gerenciar contas e usuários da plataforma? | | |
+| 9.6 | Telas de listagem têm mecanismo de busca ou filtro quando o volume justifica? | | |
+
+**Como verificar:**
+```
+1. Liste todas as entidades do módulo auditado
+2. Para cada uma: verifique se Create, Edit e Delete têm endpoint + tela correspondente
+3. Se algum estiver ausente, consulte o FRD ou docs/Decisoes.md
+   → Se não houver decisão registrada, é uma lacuna — registre como pendência
+4. Para SaaS: verifique se existe rota /admin/usuarios ou /settings/members com CRUD completo
+```
+
+**Exemplos de justificativa válida para ausência:**
+- "Entidade imutável após criação (ex: registro de auditoria)" → Delete: N/A
+- "Edição via novo registro com versão (ex: contrato)" → Edit: substituído por Create nova versão
+- "Fora do MVP — registrado no backlog da Fase 2" → Edit/Delete: adiado com decisão explícita

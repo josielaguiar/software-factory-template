@@ -26,6 +26,12 @@ Pule perguntas já respondidas pelo contexto existente.
 3. Uma empresa (tenant) vai ter múltiplos usuários ou é um usuário por conta?
 4. Vai ter algum usuário externo que acessa dados de outros? (ex: contador que vê dados do cliente)
 
+**Perguntas obrigatórias de gestão de usuários (não pule):**
+
+5. Quem cria novos usuários dentro da conta? Existe um admin que faz isso pelo próprio sistema?
+6. Quando um colaborador sai da empresa, quem desativa o acesso dele? Isso é feito pelo sistema?
+7. Precisa de tela para listar, editar papel e desativar membros da conta?
+
 ## Rodada 4 — Regras de negócio críticas
 
 1. Existe alguma regra que nunca pode ser violada no sistema? (ex: "conta paga não pode ser editada")

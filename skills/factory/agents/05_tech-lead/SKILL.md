@@ -57,6 +57,35 @@ Regra:
 - base estrutural antes de feature dependente
 - nunca planejar em ordem que gere bloqueio desnecessario
 
+### Passo 1.5 - Validar completude de ciclo de vida (gate obrigatorio)
+
+Antes de montar qualquer fase, varra todas as entidades no FRD e verifique:
+
+```text
+Para cada entidade principal:
+
+[ ] Create esta no escopo -> Edit tambem esta, ou ha decisao explicita de excluir?
+[ ] Create esta no escopo -> Delete/Archive tambem esta, ou ha decisao explicita de excluir?
+[ ] Se o produto e SaaS multi-tenant -> existe story de gestao de usuarios (listar, criar, editar, desativar)?
+```
+
+Se uma operacao estiver faltando sem justificativa documentada, apresente ao Owner:
+
+```text
+Operacoes sem decisao registrada
+
+Entidade [Nome]:
+- Edit: nao encontrado no FRD nem no inventario de telas
+  -> Esta fora do MVP? Entra em qual fase? Ou foi omissao?
+
+Entidade [Nome]:
+- Delete/Archive: nao encontrado
+  -> Decisao: [aguardando Owner]
+```
+
+Nao avance para o Passo 2 sem que cada ausencia tenha uma decisao explicita do Owner registrada.
+Registre as decisoes no FLOW.md e no doc de Decisoes do projeto.
+
 ### Passo 2 - Definir fases de entrega
 
 Cada fase deve:

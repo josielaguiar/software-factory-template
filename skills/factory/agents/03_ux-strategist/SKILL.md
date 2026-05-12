@@ -98,6 +98,38 @@ Para cada modulo, definir:
 
 Descrever os fluxos criticos em texto, sem cair em wireframe visual.
 
+#### Gate de completude de telas (obrigatorio)
+
+Antes de fechar o inventario, verifique:
+
+**Para cada entidade com tela de criacao:**
+
+```text
+[ ] Existe tela ou acao de edicao para esta entidade?
+    Se nao: ha decisao explicita do Owner registrada?
+
+[ ] Existe acao de exclusao ou arquivamento?
+    Se nao: ha decisao explicita do Owner registrada?
+
+[ ] A tela de listagem permite encontrar o item facilmente?
+    (busca, filtro ou paginacao se houver volume)
+```
+
+**Para SaaS com multiplos tipos de usuario:**
+
+```text
+[ ] Existe tela de gestao de membros/usuarios da conta?
+    Deve cobrir: listar, convidar/criar, editar papel, desativar
+
+[ ] Se houver admin de plataforma separado:
+    Existe tela para gerenciar contas/empresas e seus membros?
+
+[ ] Se nao houver telas de gestao: como o Owner vai gerenciar acessos?
+    Registrar a decisao explicitamente.
+```
+
+Se faltar alguma tela e nao houver decisao do Owner, apresente como alerta no Passo 5.
+
 ### Passo 5 - Identificar alertas de UX
 
 Comparar com o que o mercado e o comportamento do usuario sugerem.
